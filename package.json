@@ -1,0 +1,32 @@
+{
+  "name": "finance-quotes",
+  "version": "1.0.0",
+  "description": "Quotes API for stocksi\b in various provider",
+  "main": "index.js\b\b\b\b\b\b\b\blib/indi\b\bdex.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calvinkit/finance-quotes.git"
+  },
+  "keywords": [
+    "Finance",
+    "stock quotes",
+    "API"
+  ],
+  "author": "Calvin Lai",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/calvinkit/finance-quotes/issues"
+  },
+  "homepage": "https://github.com/calvinkit/finance-quotes#readme",
+  "dependencies": {
+    "follow-redirects": "*",
+    "url-parse": "*",
+	"csv2array":"*",
+	"moment":"*",
+	"http-proxy-agent":"*",
+	"https-proxy-agent":"*"
+  }
+}

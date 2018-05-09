@@ -1,0 +1,66 @@
+var Quotes = require('./quotes');
+var csv2array = require('csv2array');
+var moment = require('moment');
+
+class AlphaVantage extends Quotes{
+    constructor(agent) { super(agent); }
+
+	
+    // https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TSE:XIU&apikey=BZ7PZOM050R6M03T&datatype=csv
+	buildPriceURL(security) {
+        return 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=BZ7PZOM050R6M03T&datatype=csv&symbol='+(security.country!='United States'?security.country+':':'')+security.ticker;
+	}
+	buildHistoryURL(security) {
+		return buildPriceURL(security);
+	}
+	
+	parsePriceData(security, data) {
+		var quotes = csv2array(data);
+		var bAdjClose = false;
+	    security.quotes = new Array();
+		for (var i=1; i<quotes.length; i++) {
+			var e = quotes[i];
+			security.quotes.push({ 
+				date: new Date(e[0]).toGMTDate().getTime(),
+				price: bAdjClose?parseFloat(e[5]):parseFloat(e[4]),
+				vol: parseFloat(e[5]),
+				lo: parseFloat(e[3]),
+				hi: parseFloat(e[2])});
+		}
+		security.quotes.sort(function(a,b) { return (a.date<b.date?-1:1); });
+
+		var latest = security.quotes.slice(-1)[0];
+		var latest2 = security.quotes.slice(-2)[0];
+		security.price = latest.price;
+		security.change = latest.price-latest2.price;
+		security.pchange = security.change/latest2.price*100;
+
+		return security;
+	}
+	
+	parseHistoryData(security, data) {
+		var quotes = csv2array(data);
+		var bAdjClose = true;
+	    security.quotes = new Array();
+		for (var i=1; i<quotes.length; i++) {
+			var e = quotes[i];
+			security.quotes.push({ 
+				date: new Date(e[0]).toGMTDate().getTime(),
+				price: bAdjClose?parseFloat(e[5]):parseFloat(e[4]),
+				vol: parseFloat(e[5]),
+				lo: parseFloat(e[3]),
+				hi: parseFloat(e[2])});
+		}
+		security.quotes.sort(function(a,b) { return (a.date<b.date?-1:1); });
+
+		var latest = security.quotes.slice(-1)[0];
+		var latest2 = security.quotes.slice(-2)[0];
+		security.price = latest.price;
+		security.change = latest.price-latest2.price;
+		security.pchange = security.change/latest2.price*100;
+
+		return security;
+	}		
+}
+
+module.exports = AlphaVantage;
