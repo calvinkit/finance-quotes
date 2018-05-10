@@ -1,8 +1,8 @@
 {
   "name": "finance-quotes",
   "version": "1.0.0",
-  "description": "Quotes API for stocksi\b in various provider",
-  "main": "index.js\b\b\b\b\b\b\b\blib/indi\b\bdex.js",
+  "description": "Quotes API for stocks in various provider",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha"
   },
