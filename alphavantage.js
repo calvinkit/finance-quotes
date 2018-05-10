@@ -3,12 +3,13 @@ var csv2array = require('csv2array');
 var moment = require('moment');
 
 class AlphaVantage extends Quotes{
-    constructor(agent) { super(agent); }
-
+    constructor(agent, key) { 
+        super(agent); 
+        this.key = key; 
+    }
 	
-    // https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TSE:XIU&apikey=BZ7PZOM050R6M03T&datatype=csv
 	buildPriceURL(security) {
-        return 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=BZ7PZOM050R6M03T&datatype=csv&symbol='+(security.country!='United States'?security.country+':':'')+security.ticker;
+        return 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&apikey='+this.key+'&datatype=csv&outputsize=full&symbol='+(security.country!='United States'?security.country+':':'')+security.ticker;
 	}
 	buildHistoryURL(security) {
 		return buildPriceURL(security);
