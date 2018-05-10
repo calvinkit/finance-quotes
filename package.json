@@ -1,6 +1,6 @@
 {
   "name": "finance-quotes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Quotes API for stocks in various provider",
   "main": "lib/index.js",
   "scripts": {
@@ -24,9 +24,9 @@
   "dependencies": {
     "follow-redirects": "*",
     "url-parse": "*",
-	"csv2array":"*",
-	"moment":"*",
-	"http-proxy-agent":"*",
-	"https-proxy-agent":"*"
+    "csv2array": "*",
+    "moment": "*",
+    "http-proxy-agent": "*",
+    "https-proxy-agent": "*"
   }
 }
