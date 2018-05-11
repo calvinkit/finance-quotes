@@ -52,3 +52,15 @@ describe('Morningstar', function() {
         (new quotes.morningstar(httpsProxy)).gethistory(security, () => done('Should not be here'), function(security,err) { done() });
     });
 });
+
+describe('Yahoo', function() {
+    var security = { ticker:'GOOG',yticker:'GOOG', country:'United States' };
+    //it('getprice', function(done) {
+    //    (new quotes.yahoo(httpsProxy, avkey)).getprice(security, () => done(), function(security,err) { done(err) });
+    //});
+
+    it('gethistory', function(done) {
+        (new quotes.yahoo(httpsProxy, avkey)).gethistory(security, () => done(), function(security,err) { done(err) });
+    });
+});
+
