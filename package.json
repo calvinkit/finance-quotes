@@ -1,6 +1,6 @@
 {
   "name": "finance-quotes",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Quotes API for stocks in various provider",
   "main": "lib/index.js",
   "scripts": {
