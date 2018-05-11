@@ -7,6 +7,18 @@ var avkey = process.env.ALPHAVANTAGE;
 var qlkey = process.env.QUANDL;
 var quotes = require('./../lib/index');
 
+
+describe('AlphaVantage', function() {
+    var security = { ticker:'GOOG',yticker:'GOOG', country:'United States' };
+    it('getprice', function(done) {
+        (new quotes.alphavantage(httpsProxy, avkey)).getprice(security, () => done(), function(security,err) { done(err) });
+    });
+
+    //it('gethistory', function(done) {
+    //    (new quotes.alphavantage(httpsProxy, avkey)).gethistory(security, () => done(), function(security,err) { done(err) });
+    //});
+});
+
 describe('Quandl', function() {
     var security = { ticker:'043602_F_ALL',yticker:'043602_F_ALL', country:'CFTC' };
     it('gethistory should return timeseries without error', function(done) {
