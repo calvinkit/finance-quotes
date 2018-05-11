@@ -9,14 +9,15 @@ var quotes = require('./../lib/index');
 
 
 describe('AlphaVantage', function() {
+    this.timeout(10000);
     var security = { ticker:'GOOG',yticker:'GOOG', country:'United States' };
     it('getprice', function(done) {
         (new quotes.alphavantage(httpsProxy, avkey)).getprice(security, () => done(), function(security,err) { done(err) });
     });
 
-    //it('gethistory', function(done) {
-    //    (new quotes.alphavantage(httpsProxy, avkey)).gethistory(security, () => done(), function(security,err) { done(err) });
-    //});
+    it('gethistory', function(done) {
+        (new quotes.alphavantage(httpsProxy, avkey)).gethistory(security, () => done(), function(security,err) { done(err) });
+    });
 });
 
 describe('Quandl', function() {
@@ -54,13 +55,13 @@ describe('Morningstar', function() {
 });
 
 describe('Yahoo', function() {
-    var security = { ticker:'GOOG',yticker:'GOOG', country:'United States' };
+    //var security = { ticker:'GOOG',yticker:'GOOG', country:'United States' };
     //it('getprice', function(done) {
     //    (new quotes.yahoo(httpsProxy, avkey)).getprice(security, () => done(), function(security,err) { done(err) });
     //});
 
-    it('gethistory', function(done) {
-        (new quotes.yahoo(httpsProxy, avkey)).gethistory(security, () => done(), function(security,err) { done(err) });
-    });
+    //it('gethistory', function(done) {
+    //    (new quotes.yahoo(httpsProxy, avkey)).gethistory(security, () => done(), function(security,err) { done(err) });
+    //});
 });
 
